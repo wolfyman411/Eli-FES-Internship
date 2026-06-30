@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
@@ -6,13 +6,13 @@ import axios from "axios"
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import Timer from './Timer'
 
 const NewItems = () => {
 
   const [items,setItems] = useState([])
   const [itemsToDisplay, setItemsToDisplay] = useState(4);
   const [loaded,setLoaded] = useState(false)
-  const currentTime = useRef(Date.now())
   
   const updateItemsToDisplay = () => {
     if (window.innerWidth <= 600) {
@@ -36,35 +36,10 @@ const NewItems = () => {
     }
   },[items])
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      currentTime.current = Date.now()
-    }, 1000)
-  },[])
-
   async function getItems() {
     setLoaded(false)
     const {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems")
     setItems(data)
-  }
-
-  function timerHTML(expireTime) {
-
-    function displayTime(expireTime) {
-      const mili = expireTime - currentTime
-
-      if (mili > 0) {
-        const seconds = Math.floor(mili/1000)
-        const minutes = Math.floor(seconds/60)
-        const hours = Math.floor(minutes/60)
-        return `${hours.toString()}h ${minutes.toString()%60}m ${(seconds%60).toString()}s`
-      }
-      return null
-    }
-
-    return (
-      <div className="de_countdown">{displayTime(expireTime)}</div>
-    )
   }
 
   function itemHTML(item) {
@@ -82,7 +57,7 @@ const NewItems = () => {
               <i className="fa fa-check"></i>
             </Link>
           </div>
-          {timerHTML(item.expiryDate)}
+          <Timer expireTime={item.expiryDate}/>
 
           <div className="nft__item_wrap">
             <div className="nft__item_extra">
