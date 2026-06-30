@@ -22,6 +22,10 @@ export default function Timer({expireTime}) {
 }
 
   return (
-    <div className="de_countdown">{displayTime(expireTime)}</div>
-  )
+    displayTime(expireTime) ? (
+        <div className="de_countdown">{displayTime(expireTime)}</div>
+    ) : (
+        null
+    )
+  );
 }
