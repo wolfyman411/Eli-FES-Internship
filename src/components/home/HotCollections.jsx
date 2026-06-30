@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios"
-import Slider from "react-slick"
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 const HotCollections = () => {
 
@@ -16,26 +18,6 @@ const HotCollections = () => {
   async function getItems() {
     const {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
     setCollections(data)
-  }
-
-  function SimpleSlider() {
-    var settings = {
-      dots: false,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 1,
-    };
-
-    return (
-      <div className="slider-container">
-        <Slider {...settings}>
-          {collections.map((item) => (
-            collectionHTML(item)
-          ))}
-        </Slider>
-      </div>
-    )
   }
 
   function collectionHTML(item) {
@@ -74,7 +56,11 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {SimpleSlider()}
+          <OwlCarousel className='owl-theme' loop items={4} dots={false} nav>
+            {collections.map((item) => (
+              collectionHTML(item)
+            ))}
+          </OwlCarousel>
         </div>
       </div>
     </section>
