@@ -10,8 +10,19 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 const HotCollections = () => {
 
   const [collections,setCollections] = useState([])
+  const [itemsToDisplay, setItemsToDisplay] = useState(4);
+
+  const updateItemsToDisplay = () => {
+    if (window.innerWidth <= 1000) {
+      setItemsToDisplay(2);
+    } else {
+      setItemsToDisplay(4);
+    }
+  };
 
   useEffect(() => {
+    updateItemsToDisplay();
+    window.addEventListener('resize', updateItemsToDisplay);
     getItems()
   },[])
 
@@ -22,7 +33,7 @@ const HotCollections = () => {
 
   function collectionHTML(item) {
     return (
-      <div className="col-lg-12 col-md-6 col-sm-6 col-xs-12" key={item.id}>
+      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" key={item.id}>
         <div className="nft_coll">
           <div className="nft_wrap">
             <Link to="/item-details">
@@ -56,11 +67,15 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <OwlCarousel className='owl-theme' loop items={4} dots={false} nav>
+          {collections.length > 0 ? (
+          <OwlCarousel className='owl-theme' loop items={itemsToDisplay} dots={false} nav>
             {collections.map((item) => (
               collectionHTML(item)
             ))}
           </OwlCarousel>
+          ) : (
+            null
+          )}
         </div>
       </div>
     </section>
