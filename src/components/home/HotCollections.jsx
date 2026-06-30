@@ -11,9 +11,12 @@ const HotCollections = () => {
 
   const [collections,setCollections] = useState([])
   const [itemsToDisplay, setItemsToDisplay] = useState(4);
+  const [loaded,setLoaded] = useState(false)
 
   const updateItemsToDisplay = () => {
-    if (window.innerWidth <= 1000) {
+    if (window.innerWidth <= 600) {
+      setItemsToDisplay(1);
+    } else if (window.innerWidth <= 1000) {
       setItemsToDisplay(2);
     } else {
       setItemsToDisplay(4);
@@ -26,7 +29,14 @@ const HotCollections = () => {
     getItems()
   },[])
 
+  useEffect(() => {
+    if (collections.length > 0) {
+      setLoaded(true)
+    }
+  },[collections])
+
   async function getItems() {
+    setLoaded(false)
     const {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
     setCollections(data)
   }
@@ -87,8 +97,8 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <OwlCarousel className='owl-theme' loop items={itemsToDisplay} dots={false} nav>
-            {collections.length > 0 ? (
+          <OwlCarousel key={loaded} className='owl-theme' loop items={itemsToDisplay} dots={false} nav>
+            {loaded ? (
               collections.map((item) => collectionHTML(item))
             ) : (
               new Array(8).fill(0).map((_, index) => lazyHTML(index))
