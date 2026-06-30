@@ -10,3 +10,27 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+.slick-prev, .slick-next {
+    width: 40px;
+    height: 40px;
+    outline: 1px solid gray;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-color: white;
+    color: gray;
+    box-shadow: 4px 4px 24px gray;
+}
+
+.slick-prev {
+    transform: translate(50%, -50%);
+}
+
+.slick-prev:before, .slick-next:before {
+    position: relative;
+    z-index: 2;
+    color: gray;
+}
