@@ -57,6 +57,26 @@ const HotCollections = () => {
     )
   }
 
+  function lazyHTML(index) {
+    return (
+      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" key={index}>
+        <div className="nft_coll">
+          <div className="nft_wrap">
+            <div className="skeleton-box" style={{width:"100%", height:"100%"}}></div>
+          </div>
+          <div className="nft_coll_pp">
+            <div className="skeleton-box" style={{padding:"32px 32px", borderRadius:"50%"}}></div>
+            <i className="fa fa-square"></i>
+          </div>
+          <div className="nft_coll_info">
+            <div className="skeleton-box" style={{width:"40%", padding:"12px 0px", display:"block", margin:"12px auto"}}></div>
+            <div className="skeleton-box" style={{width:"30%", padding:"12px 0px", display:"block", margin:"0 auto"}}></div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -67,15 +87,13 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {collections.length > 0 ? (
           <OwlCarousel className='owl-theme' loop items={itemsToDisplay} dots={false} nav>
-            {collections.map((item) => (
-              collectionHTML(item)
-            ))}
+            {collections.length > 0 ? (
+              collections.map((item) => collectionHTML(item))
+            ) : (
+              new Array(8).fill(0).map((_, index) => lazyHTML(index))
+            )}
           </OwlCarousel>
-          ) : (
-            null
-          )}
         </div>
       </div>
     </section>
