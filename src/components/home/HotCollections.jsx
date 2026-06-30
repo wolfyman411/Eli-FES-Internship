@@ -67,7 +67,7 @@ const HotCollections = () => {
     )
   }
 
-  function lazyHTML(index) {
+  function skeletonHTML(index) {
     return (
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" key={index}>
         <div className="nft_coll">
@@ -101,7 +101,7 @@ const HotCollections = () => {
             {loaded ? (
               collections.map((item) => collectionHTML(item))
             ) : (
-              new Array(8).fill(0).map((_, index) => lazyHTML(index))
+              new Array(8).fill(0).map((_, index) => skeletonHTML(index))
             )}
           </OwlCarousel>
         </div>
