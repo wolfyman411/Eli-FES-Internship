@@ -33,6 +33,74 @@ const Author = () => {
     setUserData(data)
   }
 
+  function authorHTML() {
+    return(
+      <div className="col-md-12">
+        <div className="d_profile de-flex">
+          <div className="de-flex-col">
+            <div className="profile_avatar">
+              <img src={userData.authorImage} alt="" />
+
+              <i className="fa fa-check"></i>
+              <div className="profile_name">
+                <h4>
+                  {userData.authorName}
+                  <span className="profile_username">{userData.tag}</span>
+                  <span id="wallet" className="profile_wallet">
+                    {userData.address}
+                  </span>
+                  <button id="btn_copy" title="Copy Text">
+                    Copy
+                  </button>
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div className="profile_follow de-flex">
+            <div className="de-flex-col">
+              <div className="profile_follower">{userData.followers+following} followers</div>
+              <Link to="#" className="btn-main" onClick={() => setFollowing(!following)}>
+                {following ? "Following" : "Follow"}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  function skeletonHTML() {
+    return (
+    <div className="col-md-12">
+      <div className="d_profile de-flex">
+        <div className="de-flex-col">
+          <div className="profile_avatar">
+            <div className="skeleton-box" style={{padding:"64px 64px", borderRadius:"50%"}}></div>
+
+            <div className="profile_name">
+              <h4>
+                <div className="skeleton-box" style={{width:"200px", display:"block"}}></div>
+                <div className="skeleton-box" style={{width:"120px", height:"16px", top:"4px", display:"block"}}></div>
+                <span id="wallet" className="profile_wallet">
+                  <div className="skeleton-box" style={{width:"200px", height:"24px", top:"8px", display:"block"}}></div>
+                </span>
+              </h4>
+            </div>
+          </div>
+        </div>
+        <div className="profile_follow de-flex">
+          <div className="de-flex-col">
+            <div className="profile_follower"></div>
+            <Link to="#" className="btn-main" onClick={() => setFollowing(!following)}>
+              Follow
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+    )
+  }
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -49,38 +117,7 @@ const Author = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <div className="col-md-12">
-                <div className="d_profile de-flex">
-                  <div className="de-flex-col">
-                    <div className="profile_avatar">
-                      <img src={userData.authorImage} alt="" />
-
-                      <i className="fa fa-check"></i>
-                      <div className="profile_name">
-                        <h4>
-                          {userData.authorName}
-                          <span className="profile_username">{userData.tag}</span>
-                          <span id="wallet" className="profile_wallet">
-                            {userData.address}
-                          </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_follower">{userData.followers+following} followers</div>
-                      <Link to="#" className="btn-main" onClick={() => setFollowing(!following)}>
-                        {following ? "Following" : "Follow"}
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+              {loaded ? authorHTML() : skeletonHTML()}
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
                   <AuthorItems nftCollection={userData.nftCollection} loaded={loaded} />
