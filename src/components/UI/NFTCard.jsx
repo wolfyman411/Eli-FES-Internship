@@ -66,6 +66,7 @@ export default function NFTCard({item,caro=false,index}) {
   }
 
   function skeletonHTML() {
+
     return(
     <div className={styleClass} key={index}>
         <div className="nft__item">
