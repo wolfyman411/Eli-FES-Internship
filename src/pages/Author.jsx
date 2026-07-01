@@ -10,6 +10,7 @@ const Author = () => {
   const {id} = useParams()
   const [userData,setUserData] = useState([])
   const [loaded,setLoaded] = useState(false)
+  const [following,setFollowing] = useState(false)
 
   useEffect(() => {
       getUserData()
@@ -71,9 +72,9 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">{userData.followers} followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
+                      <div className="profile_follower">{userData.followers+following} followers</div>
+                      <Link to="#" className="btn-main" onClick={() => setFollowing(!following)}>
+                        {following ? "Following" : "Follow"}
                       </Link>
                     </div>
                   </div>
