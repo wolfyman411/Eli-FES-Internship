@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Timer from './Timer';
 
 
-export default function NFTCard({item,caro=false,index}) {
+export default function NFTCard({item,caro=false}) {
 
   // This is needed because styling gets messed up when placed within a carousel
   const styleClass = caro ? "col-lg-12 col-md-12 col-sm-12 col-xs-12" : "col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -11,7 +11,6 @@ export default function NFTCard({item,caro=false,index}) {
   function cardHTML() {
     return(
         <div
-            key={item.id}
             className={"d-item "+styleClass}
             style={{ display: "block", backgroundSize: "cover" }}
         >
@@ -68,7 +67,7 @@ export default function NFTCard({item,caro=false,index}) {
   function skeletonHTML() {
 
     return(
-    <div className={styleClass} key={index}>
+    <div className={styleClass}>
         <div className="nft__item">
             <div className="author_list_pp">
             <Link

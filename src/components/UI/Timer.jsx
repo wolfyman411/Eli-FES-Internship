@@ -7,6 +7,8 @@ export default function Timer({expireTime}) {
     const interval = setInterval(() => {
       setCurrentTime(Date.now())
     }, 1000)
+
+    return () => clearInterval(interval) // Stops when unmounted
   },[])
 
   function displayTime(expireTime) {

@@ -51,9 +51,9 @@ const ExploreItems = () => {
         </select>
       </div>
       {loaded ? (
-        items.map((item) => <NFTCard item={item}/>).slice(0,displayItems)
+        items.map((item) => <NFTCard item={item} key={item.id}/>).slice(0,displayItems)
       ) : (
-        new Array(8).fill(0).map((_, index) => <NFTCard index={index}/>)
+        new Array(8).fill(0).map((_, index) => <NFTCard key={index}/>)
       )}
       {displayItems < items.length && (
         <div className="col-md-12 text-center">

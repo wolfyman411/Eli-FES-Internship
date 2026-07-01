@@ -55,9 +55,9 @@ const NewItems = () => {
           </div>
           <OwlCarousel key={loaded} className='owl-theme' loop items={itemsToDisplay} dots={false} nav>
             {loaded ? (
-              items.map((item) => <NFTCard item={item} caro={true}/>)
+              items.map((item) => <NFTCard item={item} caro={true} key={item.id}/>)
             ) : (
-              new Array(8).fill(0).map((_, index) => <NFTCard index={index} caro={true}/>)
+              new Array(8).fill(0).map((_, index) => <NFTCard key={index} caro={true}/>)
             )}
           </OwlCarousel>
         </div>
