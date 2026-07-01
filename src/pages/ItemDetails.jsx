@@ -30,6 +30,144 @@ const ItemDetails = () => {
     setNft(data)
   }
 
+  function nftHTML() {
+    return (
+      <>
+        <div className="col-md-6 text-center">
+          <img
+            src={nft.nftImage}
+            className="img-fluid img-rounded mb-sm-30 nft-image"
+            alt=""
+          />
+        </div>
+        <div className="col-md-6">
+          <div className="item_info">
+            <h2>{nft.title}</h2>
+
+            <div className="item_info_counts">
+              <div className="item_info_views">
+                <i className="fa fa-eye"></i>
+                {nft.views}
+              </div>
+              <div className="item_info_like">
+                <i className="fa fa-heart"></i>
+                {nft.likes}
+              </div>
+            </div>
+            <p>
+              {nft.description}
+            </p>
+            <div className="d-flex flex-row">
+              <div className="mr40">
+                <h6>Owner</h6>
+                <div className="item_author">
+                  <div className="author_list_pp">
+                    <Link to={`/author/${nft.ownerId}`}>
+                      <img className="lazy" src={nft.ownerImage} alt="" />
+                      <i className="fa fa-check"></i>
+                    </Link>
+                  </div>
+                  <div className="author_list_info">
+                    <Link to={`/author/${nft.ownerId}`}>{nft.ownerName}</Link>
+                  </div>
+                </div>
+              </div>
+              <div></div>
+            </div>
+            <div className="de_tab tab_simple">
+              <div className="de_tab_content">
+                <h6>Creator</h6>
+                <div className="item_author">
+                  <div className="author_list_pp">
+                    <Link to={`/author/${nft.creatorId}`}>
+                      <img className="lazy" src={nft.creatorImage} alt="" />
+                      <i className="fa fa-check"></i>
+                    </Link>
+                  </div>
+                  <div className="author_list_info">
+                    <Link to={`/author/${nft.creatorId}`}>{nft.creatorName}</Link>
+                  </div>
+                </div>
+              </div>
+              <div className="spacer-40"></div>
+              <h6>Price</h6>
+              <div className="nft-item-price">
+                <img src={EthImage} alt="" />
+                <span>{nft.price}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    )
+  }
+
+  function skeletonHTML() {
+    return (
+      <>
+        <div className="col-md-6 text-center">
+          <div className="skeleton-box" style={{width:"100%", height:"100%"}}></div>
+        </div>
+        <div className="col-md-6">
+          <div className="item_info">
+            <div className="skeleton-box" style={{width:"200px", height:"32px"}}></div>
+
+            <div className="item_info_counts">
+              <div className="item_info_views">
+                <i className="fa fa-eye"></i>
+                100
+              </div>
+              <div className="item_info_like">
+                <i className="fa fa-heart"></i>
+                100
+              </div>
+            </div>
+            <p>
+              <div className="skeleton-box" style={{width:"100%", height:"120px"}}></div>
+            </p>
+            <div className="d-flex flex-row">
+              <div className="mr40">
+                <h6>Owner</h6>
+                <div className="item_author">
+                  <div className="author_list_pp">
+                    <Link to={`/author/${nft.ownerId}`}>
+                      <div className="skeleton-box" style={{padding:"24px 24px", borderRadius:"50%"}}></div>
+                    </Link>
+                  </div>
+                  <div className="author_list_info">
+                    <div className="skeleton-box" style={{width:"120px", height:"24px"}}></div>
+                  </div>
+                </div>
+              </div>
+              <div></div>
+            </div>
+            <div className="de_tab tab_simple">
+              <div className="de_tab_content">
+                <h6>Creator</h6>
+                <div className="item_author">
+                  <div className="author_list_pp">
+                    <Link to={`/author/${nft.creatorId}`}>
+                      <div className="skeleton-box" style={{padding:"24px 24px", borderRadius:"50%"}}></div>
+                    </Link>
+                  </div>
+                  <div className="author_list_info">
+                    <div className="skeleton-box" style={{width:"120px", height:"24px"}}></div>
+                  </div>
+                </div>
+              </div>
+              <div className="spacer-40"></div>
+              <h6>Price</h6>
+              <div className="nft-item-price">
+                <img src={EthImage} alt="" />
+                <span>1.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    )
+  }
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -37,71 +175,7 @@ const ItemDetails = () => {
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
             <div className="row">
-              <div className="col-md-6 text-center">
-                <img
-                  src={nft.nftImage}
-                  className="img-fluid img-rounded mb-sm-30 nft-image"
-                  alt=""
-                />
-              </div>
-              <div className="col-md-6">
-                <div className="item_info">
-                  <h2>{nft.title}</h2>
-
-                  <div className="item_info_counts">
-                    <div className="item_info_views">
-                      <i className="fa fa-eye"></i>
-                      {nft.views}
-                    </div>
-                    <div className="item_info_like">
-                      <i className="fa fa-heart"></i>
-                      {nft.likes}
-                    </div>
-                  </div>
-                  <p>
-                    {nft.description}
-                  </p>
-                  <div className="d-flex flex-row">
-                    <div className="mr40">
-                      <h6>Owner</h6>
-                      <div className="item_author">
-                        <div className="author_list_pp">
-                          <Link to={`/author/${nft.ownerId}`}>
-                            <img className="lazy" src={nft.ownerImage} alt="" />
-                            <i className="fa fa-check"></i>
-                          </Link>
-                        </div>
-                        <div className="author_list_info">
-                          <Link to={`/author/${nft.ownerId}`}>{nft.ownerName}</Link>
-                        </div>
-                      </div>
-                    </div>
-                    <div></div>
-                  </div>
-                  <div className="de_tab tab_simple">
-                    <div className="de_tab_content">
-                      <h6>Creator</h6>
-                      <div className="item_author">
-                        <div className="author_list_pp">
-                          <Link to={`/author/${nft.creatorId}`}>
-                            <img className="lazy" src={nft.creatorImage} alt="" />
-                            <i className="fa fa-check"></i>
-                          </Link>
-                        </div>
-                        <div className="author_list_info">
-                          <Link to={`/author/${nft.creatorId}`}>{nft.creatorName}</Link>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="spacer-40"></div>
-                    <h6>Price</h6>
-                    <div className="nft-item-price">
-                      <img src={EthImage} alt="" />
-                      <span>{nft.price}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {loaded ? nftHTML() : skeletonHTML()}
             </div>
           </div>
         </section>
