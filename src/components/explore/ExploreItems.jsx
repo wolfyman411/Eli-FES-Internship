@@ -9,6 +9,7 @@ const ExploreItems = () => {
 
   const [items,setItems] = useState([])
   const [loaded,setLoaded] = useState(false)
+  const [displayItems,setDisplayItems] = useState(8)
 
   useEffect(() => {
       getItems()
@@ -30,6 +31,10 @@ const ExploreItems = () => {
     return(null)
   }
 
+  function displayMore() {
+    setDisplayItems((prev) => prev + 4)
+  }
+
   return (
     <>
       <div>
@@ -41,15 +46,17 @@ const ExploreItems = () => {
         </select>
       </div>
       {loaded ? (
-        items.map((item) => <NFTCard item={item}/>)
+        items.map((item) => <NFTCard item={item}/>).slice(0,displayItems)
       ) : (
         new Array(8).fill(0).map((_, index) => <NFTCard index={index}/>)
       )}
-      <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
-      </div>
+      {displayItems < items.length && (
+        <div className="col-md-12 text-center">
+          <Link to="" id="loadmore" className="btn-main lead" onClick={displayMore}>
+            Load more
+          </Link>
+        </div>
+      )}
     </>
   );
 };
