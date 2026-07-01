@@ -32,10 +32,6 @@ const ExploreItems = () => {
     setItems(data)
   }
 
-  function skeletonHTML(index) {
-    return(null)
-  }
-
   function displayMore() {
     setDisplayItems((prev) => prev + 4)
   }
