@@ -8,7 +8,7 @@ import axios from "axios";
 const Author = () => {
 
   const {id} = useParams()
-  const [userData,setUserData] = useState([])
+  const [userData,setUserData] = useState({})
   const [loaded,setLoaded] = useState(false)
   const [following,setFollowing] = useState(false)
 
