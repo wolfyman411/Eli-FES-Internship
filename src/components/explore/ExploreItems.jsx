@@ -52,7 +52,7 @@ const ExploreItems = () => {
         new Array(8).fill(0).map((_, index) => <NFTCard key={index}/>)
       )}
       {displayItems < items.length && (
-        <div className="col-md-12 text-center">
+        <div className="col-md-12 text-center" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
           <Link to="" id="loadmore" className="btn-main lead" onClick={displayMore}>
             Load more
           </Link>

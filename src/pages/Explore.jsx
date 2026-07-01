@@ -8,7 +8,7 @@ const Explore = () => {
   }, []);
 
   return (
-    <div id="wrapper">
+    <div id="wrapper" data-aos="fade-in" data-aos-delay="100" data-aos-duration="500">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
 
@@ -31,8 +31,8 @@ const Explore = () => {
 
         <section aria-label="section">
           <div className="container">
-            <div className="row">
-              <ExploreItems />
+            <div className="row" data-aos="fade-in" data-aos-delay="400" data-aos-duration="500">
+              <ExploreItems/>
             </div>
           </div>
         </section>
